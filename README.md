@@ -3,8 +3,8 @@
 
 
 ## About
-The classic arcade game, whac-a-mole built using python.
-The GUI is built using tkinter, and threading helps run multiple processes together.
+The classic arcade game, whac-a-mole built using python.<br>
+The GUI is built using tkinter, and threading helps run multiple processes together.<br>
 *(Play with mouse or on touchscreen for best experience.)*
 
 ## Setup and Usage
