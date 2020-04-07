@@ -18,7 +18,8 @@ on:
 
 jobs:
    lint:
-
-    steps:
+     runs-on: ubuntu-latest
+     
+     steps:
       - name: Testing with flake8
         uses: TrueBrain/actions-flake8@master
