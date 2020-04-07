@@ -1,0 +1,37 @@
+name: flake8_lint
+
+on:
+  push:
+    # Only run if,
+    paths:
+      # Changes in python files
+      - '*.py'
+    branches:
+      - master
+  pull_request:
+    # Only run if,
+    paths:
+      # Changes in python files
+      - '*.py'
+    branches:
+      - master
+
+jobs:
+  flake8_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7.4
+          architecture: x64
+      - name: Checkout PyTorch
+        uses: actions/checkout@master
+      - name: Install flake8
+        run: pip install flake8
+      - name: Run flake8
+        uses: suo/flake8-github-action@releases/v1
+        with:
+          checkName: 'flake8_lint'   
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
