@@ -16,4 +16,4 @@ jobs:
       - name: Testing with flake8
         uses: TrueBrain/actions-flake8@master
         with:
-          path: "**.py" 
+          path: .py 
