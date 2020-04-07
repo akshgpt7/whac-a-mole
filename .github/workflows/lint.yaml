@@ -15,23 +15,21 @@ on:
       - '*.py'
     branches:
       - master
-
+      
 jobs:
-  flake8_lint:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7.6
-          architecture: x64
-      - name: Checkout PyTorch
-        uses: actions/checkout@master
-      - name: Install flake8
-        run: pip install flake8
-      - name: Run flake8
-        uses: suo/flake8-github-action@releases/v1
-        with:
-          checkName: 'flake8_lint'   
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Setup flake8 annotations  # To annotate the errors in the pull request
+      uses: rbialon/flake8-annotations@v1
+    - name: Lint with flake8
+      # Check for only changed files, rather than the entire repository
+      run: |
+        pip install flake8
+        git diff HEAD^ | flake8 --diff
